@@ -10,7 +10,7 @@ const getGithubEvents = async (link) => {
       method: "Get",
     });
     const data = await res.json();
-    return data;
+    return Array.isArray(data) ? data : [];
   } catch (error) {
     console.log(error);
   }
@@ -26,9 +26,9 @@ if (!username) {
 }
 
 getGithubEvents(getGithubLink(username)).then((data) => {
-  const filtered = data.filter((event) =>
-    event_type ? event.type === event_type : true
-  );
+  const filtered =
+    data?.filter((event) => (event_type ? event.type === event_type : true)) ??
+    [];
   if (filtered.length === 0) {
     console.log("----- There is no events yet! -----");
     return;
