@@ -53,13 +53,15 @@ getGithubEvents(getGithubLink(username)).then((data) => {
         break;
       }
       case "WatchEvent":
-        console.log(`Starred ${event.repo.name}`);
+        console.log(`- Starred ${event.repo.name}`);
         break;
       case "ForkEvent":
-        console.log(`Forked ${event.repo.name}`);
+        console.log(`- Forked ${event.repo.name}`);
         break;
       case "CreateEvent":
-        console.log(`Created ${event.payload.ref_type} in ${event.repo.name}`);
+        console.log(
+          `- Created ${event.payload.ref_type} in ${event.repo.name}`
+        );
         break;
       default: {
         break;
